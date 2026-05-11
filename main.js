@@ -292,7 +292,7 @@ https://whatsapp.com/channel/0029VajvgNv30LKQQnapiq02`;
 if (connection == 'close') {
     console.log(chalk.yellow(`📡 Connection is lost from the server, delete sessions and retake immediately ⚠️`));
 }
-    
+}    
 process.on('uncaughtException', console.error)
 
 let isInit = true;
