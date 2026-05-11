@@ -9,17 +9,17 @@ handler.all = async function (m) {
   let name = await conn.getName(m.sender);
   let pp =
     "https://i0.wp.com/www.gambarunik.id/wp-content/uploads/2019/06/Top-Gambar-Foto-Profil-Kosong-Lucu-Tergokil-.jpg";
-  let fotonyu = "https://files.catbox.moe/hnbuh3.jpg";
-  let logo = "https://files.catbox.moe/hnbuh3.jpg"; // define logo aquí
-  let namebot = "SILANA LITE AI";
-  let sig = "https://instagram.com/noureddine_ouafy";
+  let fotonyu = "https://files.catbox.moe/sqgfyy.jpg";
+  let logo = "https://files.catbox.moe/sqgfyy.jpg"; // define logo aquí
+  let namebot = "EMK LITE AI";
+  let sig = "https://wa.me/qr/FFA4RBEQZQG6O1";
 
   try {
     // pp = await this.profilePictureUrl(m.sender, "image");
   } catch (e) {
     console.error(e);
   } finally {
-    global.emror = "https://files.catbox.moe/hnbuh3.jpg";
+    global.emror = "https://files.catbox.moe/sqgfyy.jpg";
 
     global.doc = pickRandom([
       "application/vnd.ms-excel",
@@ -44,8 +44,8 @@ handler.all = async function (m) {
     global.kontak2 = [
       [
         owner[0],
-        await conn.getName(owner[0] + "212717457920@s.whatsapp.net"),
-        "SILANA AI",
+        await conn.getName(owner[0] + "33759850405@s.whatsapp.net"),
+        "EMK AI",
         "https://whatsapp.com",
         true,
       ],
@@ -75,7 +75,7 @@ handler.all = async function (m) {
         remoteJid: "0@s.whatsapp.net",
       },
       message: {
-        conversation: `_${namebot} تم التحقق عن طريق الواتساب_`,
+        conversation: `_${namebot} has been verified via WhatsApp_`,
       },
     };
 
@@ -89,9 +89,9 @@ handler.all = async function (m) {
         isForwarded: true,
         forwardingScore: 1,
         forwardedNewsletterMessageInfo: {
-          newsletterJid: "120363285847738492@newsletter",
+          newsletterJid: "120363318148683520@newsletter",
           serverMessageId: 103,
-          newsletterName: `SILANA LITE AI    |   هيا نحو النجاح 🧑‍🏫`,
+          newsletterName: `EMK MUSIC | KIM SUN OO`,
         },
         externalAdReply: {
           title: namebot,
@@ -137,18 +137,18 @@ function date() {
 
 function ucapan() {
   const time = moment.tz("Africa/Casablanca").format("HH");
-  let res = "اضغط هنا لمتابعة صاحب البوت  ";
+  let res = "Click here to contact the bot owner";
   if (time >= 4) {
-    res = "اضغط هنا لمتابعة صاحب البوت  ";
+    res = "Click here to contact the bot owner";
   }
   if (time > 10) {
-    res = "اضغط هنا لمتابعة صاحب البوت  ";
+    res = "Click here to contact the bot owner";
   }
   if (time >= 15) {
-    res = "اضغط هنا لمتابعة صاحب البوت  ";
+    res = "Click here to contact the bot owner";
   }
   if (time >= 18) {
-    res = "اضغط هنا لمتابعة صاحب البوت  ";
+    res = "Click here to contact the bot owner";
   }
   return res;
 }
