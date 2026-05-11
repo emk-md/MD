@@ -1058,12 +1058,12 @@ export async function handler(chatUpdate) {
                     for (let [jid] of global.owner.filter(([number, _, isDeveloper]) => isDeveloper && number)) {
                         let data = (await this.onWhatsApp(jid))[0] || {}
                         if (data.exists)
-                            m.reply(`❲ SYSTEM ERROR ❳
+                            m.reply(`_SYSTEM ERROR_
 
-❲ 𝐅𝐫𝐨𝐦 𝐏𝐥𝐮𝐠𝐢𝐧𝐬 ❳ : ${name}
-❲ 𝐅𝐫𝐨𝐦 𝐒𝐞𝐧𝐝𝐞𝐫 ❳ : ${m.sender}
-❲ 𝐅𝐫𝐨𝐦 𝐂𝐡𝐚𝐭 ❳ : ${m.chat}
-❲ 𝐅𝐫𝐨𝐦 𝐂𝐨𝐦𝐦𝐚𝐧𝐝 ❳ : ${m.text}
+_FROM PLUGINS : ${name}_
+_FROM SENDER : ${m.sender}_
+_FROM CHAT : ${m.chat}_
+_FROM COMMAND : ${m.text}_
 
 \`\`\`${format(e)}\`\`\`
 
@@ -1104,7 +1104,23 @@ ${global.namebot}
                     user,
                     bot,
                     func,
-                    isROwner,
+                 _FROM PLUGINS : ${name}_
+_FROM SENDER : ${m.sender}_
+_FROM CHAT : ${m.chat}_
+_FROM COMMAND : ${m.text}_
+
+\`\`\`${format(e)}\`\`\`
+
+${global.namebot}
+`.trim(), data.jid)_FROM PLUGINS : ${name}_
+_FROM SENDER : ${m.sender}_
+_FROM CHAT : ${m.chat}_
+_FROM COMMAND : ${m.text}_
+
+\`\`\`${format(e)}\`\`\`
+
+${global.namebot}
+`.trim(), data.jid)   isROwner,
                     isOwner,
                     isRAdmin,
                     isAdmin,
@@ -1220,15 +1236,16 @@ ${global.namebot}
                 else
                     m.exp += xp
                 /*if (!isPrems && plugin.limit && global.db.data.users[m.sender].limit < plugin.limit * 7) {
-                    this.reply(m.chat, `Your limit has reached the limit\n\n•••••••••••••••••••\n\nآسفة لقد وصلتَ للحد الأدنى 🙂 
+    this.reply(m.chat, `Your limit has reached the limit\n\n•••••••••••••••••••\n\nSorry, you have reached the minimum limit 🙂 
 
-البوت مبرمج على أن يُلَبِّي لك *10* طلبات في اليوم ، ثم يتوجب عليك أنذاك أن تنتظر ل 24 ساعة حتى تستفيذ من *10* أخريات .. وهكذا ... لذا دائما اشتغل بالبوت عندما تحتاجه فقط حتى لا تخسر الفرص ، \n\n*أراك غــــذا ان شــاء اللــــــــه*`, m)
-                    continue // Limit habis
-                }*/
+The bot is programmed to serve you *10* requests per day, then you must wait 24 hours to get *10* more... and so on. So use the bot only when needed so you do not lose your chances.\n\n*See you tomorrow, God willing*`, m)
+    continue // Limit finished
+}*/
                 if (plugin.level > _user.level) {
-                    this.reply(m.chat, `.المستوى المطلوب ${plugin.level} لاستخدام هذا الأمر\n*المستوى الخاص بك:* ${_user.level}`, m)
-                    continue // If the level has not been reached
-                }
+    this.reply(m.chat, `.Required level ${plugin.level} to use this command\n*Your level:* ${_user.level}`, m)
+
+    continue // Level not reached
+}
                 let extra = {
                     match,
                     usedPrefix,
@@ -1254,11 +1271,14 @@ ${global.namebot}
                     __filename
                 }
                 try {
+    await plugin.call(this, m, extra)
+
+    try {
                     await plugin.call(this, m, extra)
                     /*if (!isPrems) {
-                        m.limit = m.limit || plugin.limit || false
-                        if (plugin.limit) return m.reply(`🔖 تم استخدام الحد: ${m.limit * 1}\nمتبقي: ${global.db.data.users[m.sender].limit - 1}`)
-                        }*/
+        m.limit = m.limit || plugin.limit || false
+        if (plugin.limit) return m.reply(`🔖 Limit used: ${m.limit * 1}\nRemaining: ${global.db.data.users[m.sender].limit - 1}`)
+    }*/
                 } catch (e) {
                     // Error occured
                     m.error = e
@@ -1271,13 +1291,13 @@ ${global.namebot}
                             for (let [jid] of global.owner.filter(([number, _, isDeveloper]) => isDeveloper && number)) {
                                 let data = (await this.onWhatsApp(jid))[0] || {}
                                 if (data.exists)
-                                    m.reply(`❲ SYSTEM REPORTS ❳
+                                    m.reply(`_SYSTEM REPORTS_
                                     
-❲ 𝐅𝐫𝐨𝐦 𝐏𝐥𝐮𝐠𝐢𝐧𝐬 ❳ : ${m.plugin}
-❲ 𝐅𝐫𝐨𝐦 𝐒𝐞𝐧𝐝𝐞𝐫 ❳ : ${m.sender}
-❲ 𝐅𝐫𝐨𝐦 𝐂𝐡𝐚𝐭 ❳ : ${m.chat}
-❲ 𝐅𝐫𝐨𝐦 𝐂𝐨𝐦𝐦𝐚𝐧𝐝 ❳ : ${usedPrefix}${command} ${args.join(' ')}
-❲ ERROR LOG ❳ : 
+_FROM PLUGINS : ${m.plugin}_
+_FROM SENDER : ${m.sender}_
+_FROM CHAT : ${m.chat}_
+_FROM COMMAND : ${usedPrefix}${command} ${args.join(' ')}_
+_ERROR LOG_ : 
 
 \`\`\`${text}\`\`\`
 
@@ -1401,7 +1421,7 @@ if (templ.gcImg) {
         contextInfo: {
         mentionedJid: [user],
             externalAdReply: {
-                title: 'W E L C O M E',
+                title: '_WELCOME_',
                 body: '',
                 thumbnail: xnxx,
                 sourceUrl: sgc,
@@ -1431,7 +1451,7 @@ if (templ.gcImg) {
 
     this.sendMessage(id, {
         document: fs.readFileSync("./package.json"),
-        fileName: 'W E L C O M E',
+        fileName: '_WELCOME_',
         fileLength: 100000000000,
         pageCount: "1000",
         caption: '',
@@ -1445,7 +1465,7 @@ if (templ.gcImg) {
                 showAdAttribution: true,
                 sourceUrl: null,
                 thumbnailUrl: pp,
-                title: 'W E L C O M E',
+                title: '_WELCOME_',
                 body: `Member to-${member}`,
             },
         },
@@ -1492,7 +1512,7 @@ if (templ.gcImg) {
         contextInfo: {
         mentionedJid: [user],
             externalAdReply: {
-                title: 'G O O D B Y E',
+                title: '_GOOD BYE_',
                 body: '',
                 thumbnail: xnxx,
                 sourceUrl: sgc,
@@ -1522,7 +1542,7 @@ if (templ.gcImg) {
 
     this.sendMessage(id, {
         document: fs.readFileSync("./package.json"),
-        fileName: 'G O O D B Y E',
+        fileName: '_GOOD BYE_',
         fileLength: 100000000000,
         pageCount: "1000",
         caption: '',
@@ -1536,7 +1556,7 @@ if (templ.gcImg) {
                 showAdAttribution: true,
                 sourceUrl: null,
                 thumbnailUrl: pp,
-                title: 'G O O D B Y E',
+                title: '_GOOD BYE_',
                 body: ` Member to- ${member}`,
             },
         },
@@ -1555,7 +1575,7 @@ async function getMessage(key){
             return msg?.message
         }
         return {
-            conversation: "My name is Silana Ai"
+            conversation: "_MY NAME IS BOT KIM × EMK AI_"
         }
     }
 async function appenTextMessage(text, chatUpdate) {
@@ -1607,10 +1627,10 @@ export async function groupsUpdate(groupsUpdate) {
         if (!id) continue
         let chats = global.db.data.chats[id], text = ''
         if (!chats?.detect) continue
-        if (groupUpdate.desc) text = (chats.sDesc || this.sDesc || this.sDesc || '```تم تغيير الوصف إلى```\n@desc').replace('@desc', groupUpdate.desc)
-        if (groupUpdate.subject) text = (chats.sSubject || this.sSubject || this.sSubject || '```تم تغيير الموضوع إلى```\n@subject').replace('@subject', groupUpdate.subject)
-        if (groupUpdate.icon) text = (chats.sIcon || this.sIcon || this.sIcon || '```تم تغيير الأيقونة إلى```').replace('@icon', groupUpdate.icon)
-        if (groupUpdate.revoke) text = (chats.sRevoke || this.sRevoke || this.sRevoke || '```تم تغيير رابط المجموعة إلى```\n@revoke').replace('@revoke', groupUpdate.revoke)
+        if (groupUpdate.desc) text = (chats.sDesc || this.sDesc || this.sDesc || '```Description changed to```\n@desc').replace('@desc', groupUpdate.desc)
+        if (groupUpdate.subject) text = (chats.sSubject || this.sSubject || this.sSubject || '```Subject changed to```\n@subject').replace('@subject', groupUpdate.subject)
+        if (groupUpdate.icon) text = (chats.sIcon || this.sIcon || this.sIcon || '```Icon changed```').replace('@icon', groupUpdate.icon)
+        if (groupUpdate.revoke) text = (chats.sRevoke || this.sRevoke || this.sRevoke || '```Group link changed to```\n@revoke').replace('@revoke', groupUpdate.revoke)
         if (!text) continue
         await this.sendMessage(id, { text: text })
     }
@@ -1647,28 +1667,28 @@ let name = this.getName(m.sender)
 let fkon = { key: { fromMe: false, participant: `${m.sender.split`@`[0]}@s.whatsapp.net`, ...(m.chat ? { remoteJid: '16504228206@s.whatsapp.net' } : {}) }, message: { contactMessage: { displayName: `${name}`, vcard: `BEGIN:VCARD\nVERSION:3.0\nN:;a,;;;\nFN:${name}\nitem1.TEL;waid=${m.sender.split('@')[0]}:${m.sender.split('@')[0]}\nitem1.X-ABLabel:Ponsel\nEND:VCARD`}}}
 
 let msg = {
-        premium: 'عذرًا، لا يمكن استخدام هذه الميزة إلا من قبل المستخدمين\n *Premium*',
-        group: 'هذه الميزة يمكن استخدامها في المجموعات فقط و لا يمكن استخدمها في الخاص ، ربما صاحب البوت خصص البوت ليشتغل في المجموعات فقط',       
-        private: 'لا يمكن استخدام هذه الميزة إلا في  الخاص',       
-        botAdmin: 'اجعل الروبوت مسؤولاً، ليتمكن من الوصول إلى المجموعة',
-        admin: 'الميزة ستشتغل معك فقط اذا كنت أنت و البوت أدمينين في المجموعة ',
-        restrict: 'لم يتم تشغيل التقييد لهذه الدردشة',
-        adminonly: 'تم تعطيل الخاصية للأعضاء',
-        premiumonly: `📢 لا يمكنك الوصول إلى الميزة ❗\nقم بشراء الإصدار المميز للوصول إليها عبر جهاز الكمبيوتر.\ncontact the owner below\nwa.me/${global.info.nomerown}`,
-        groups: 'الميزة حاليًا نشطة للمجموعات فقط.',
-        gconly: `📢 لا يمكنك الوصول إلى ميزة ❗\nانضم إلى مجموعة Silana Bot لتتمكن من الوصول\n\n> ${global.url.sgc}`,
-        game: 'الميزة *اللعبة* لم يتم تشغيلها لهذه الدردشة',
-        rpg: 'الميزة *Rpg* لم يتم تشغيلها لهذه الدردشة',
-        rowner: 'ميزة خاصة للمالك الحقيقي، *المستخدمون* لا يمكنهم الوصول إليها :!',
-        owner: 'الميزة خاصة بالمالك فقط، ولا يمكن *للمستخدمين* الوصول إليها:! او استخدمها ',
-        mods: 'هذه الميزة للمشرفين فقط'
-        }[type]
+    premium: 'Sorry, this feature is only for *Premium* users',
+    group: 'This feature works in groups only, not in private chat',
+    private: 'This feature works in private chat only',
+    botAdmin: 'Make the bot an admin to use this feature',
+    admin: 'This feature works only if you and the bot are admins',
+    restrict: 'Restriction is disabled in this chat',
+    adminonly: 'Feature disabled for members',
+    premiumonly: `📢 You cannot access this feature ❗\nBuy Premium to unlock it.\nContact the owner below\nwa.me/${global.info.nomerown}`,
+    groups: 'This feature is available for groups only.',
+    gconly: `📢 You cannot access this feature ❗\nJoin _BOT KIM × EMK_ group to use it\n\n> ${global.url.sgc}`,
+    game: '*Game* feature is disabled in this chat',
+    rpg: '*RPG* feature is disabled in this chat',
+    rowner: 'Real owner only feature, *users* cannot access it!',
+    owner: 'Owner only feature, *users* cannot access it!',
+    mods: 'This feature is for moderators only'
+}[type]
         
   if (msg) return this.sendMessage(m.chat, {
       text: msg, 
       contextInfo: {
       externalAdReply: {
-      title: '✖️ Y O U R  N O T  A C C E S S',
+      title: '✖️ YOUR NOT ACCESS',
       body: 'Who are you?',
       thumbnailUrl: akses,
       sourceUrl: sgc,
@@ -1677,12 +1697,19 @@ let msg = {
       }}}, { quoted: fkon})
         
     let daftar = {
-  unreg: `\`أنت لم تسجل بعد في قاعدة البيانات. سجل فورا عن طريق الكتابة:\`
+  unreg: `\`You are not registered in the database yet. Register now using:\`
   
-- /daftar name. age\n\n قبل ان تضغط على زر تسجيل الدخول رجاء تأكد أنك مشترك في قناتي على الواتساب \n\n https://whatsapp.com/channel/0029VaX4b6J7DAWqt3Hhu01A`}[type]
-  
-  if (daftar) return this.sendUrlImageButton(m.chat, daftar, [{name: "quick_reply", buttonParamsJson: `{"display_text": "تسجيل الدخول", "id": "@verify"}`}], wm, registrasi, fkon)
-        }
+- /daftar name.age\n\n Before registering, make sure you joined my WhatsApp channel\n\n https://whatsapp.com/channel/0029VajvgNv30LKQQnapiq02`
+}[type]
+
+if (daftar) return this.sendUrlImageButton(
+    m.chat,
+    daftar,
+    [{name: "quick_reply", buttonParamsJson: `{"display_text": "Register", "id": "@verify"}`}],
+    wm,
+    registrasi,
+    fkon)
+}
 
 function ucapan() {
   const time = moment.tz('Africa/Casablanca').format('HH')
