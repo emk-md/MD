@@ -27,7 +27,7 @@ global.__require = function require(dir = import.meta.url) {
     return createRequire(dir)
 }
 import * as ws from 'ws'
-import {
+tttttimport {tttttt
     readdirSync,
     statSync,
     unlinkSync,
