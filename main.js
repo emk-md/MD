@@ -1,5 +1,3 @@
-
-
 import { EventEmitter } from 'events';
 
 EventEmitter.setMaxListeners(0);
@@ -273,8 +271,9 @@ async function connectionUpdate(update) {
     }
     if (global.db.data == null) loadDatabase()
 if (connection === "open") {
-const deviceName = os.hostname();
-const message = `_Information : Bot is active_
+    const deviceName = os.hostname();
+
+    const message = `_Information : Bot is active_
    _Platform : ${os.platform()} ${os.release()}_
    _Device : ${deviceName}_
    _Bot Name : ${global.namebot}_
@@ -282,16 +281,17 @@ const message = `_Information : Bot is active_
 
 _My WhatsApp channel for more information_
 https://whatsapp.com/channel/0029VajvgNv30LKQQnapiq02`;
+
+    await conn.sendMessage(global.nomerown + `@s.whatsapp.net`, {
+        text: message
+    });
+
+    console.log(chalk.bgGreen(chalk.white('The bot is already active')));
 }
-        
-        this.sendMessage(global.nomerown + `@s.whatsapp.net`, {
-            text: message
-        });
-        console.log(chalk.bgGreen(chalk.white('The bot is already active')));
-    }
-    if (connection == 'close') {
-        console.log(chalk.yellow(`📡 Connection is lost from the server, delete sessions and retake immediately ⚠️`));
-    }
+
+if (connection == 'close') {
+    console.log(chalk.yellow(`📡 Connection is lost from the server, delete sessions and retake immediately ⚠️`));
+}
 }
 
 process.on('uncaughtException', console.error)
