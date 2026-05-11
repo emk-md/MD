@@ -272,13 +272,17 @@ async function connectionUpdate(update) {
         global.timestamp.connect = new Date
     }
     if (global.db.data == null) loadDatabase()
-    if (connection === "open") {
-        const deviceName = os.hostname();
-        const message = `• *معلومات*: البوت نشط\n
-◦ *المنصة*: ${os.platform()} ${os.release()}
-◦ *جهاز*: ${deviceName}
-◦ *اسم البوت*: ${global.namebot}
-◦ *الوقت المتصل*: ${new Date().toLocaleString()}\n\n قناتي على الواتساب للمزيد من المعلومات \nhttps://whatsapp.com/channel/0029VaX4b6J7DAWqt3Hhu01A`;
+if (connection === "open") {
+const deviceName = os.hostname();
+const message = `_Information : Bot is active_
+   _Platform : ${os.platform()} ${os.release()}_
+   _Device : ${deviceName}_
+   _Bot Name : ${global.namebot}_
+   _Connected Time : ${new Date().toLocaleString()}_
+
+_My WhatsApp channel for more information_
+https://whatsapp.com/channel/0029VajvgNv30LKQQnapiq02`;
+}
         
         this.sendMessage(global.nomerown + `@s.whatsapp.net`, {
             text: message
@@ -321,19 +325,18 @@ global.reloadHandler = async function(restatConn) {
         conn.ev.off('connection.update', conn.connectionUpdate)
         conn.ev.off('creds.update', conn.credsUpdate)
     }
-    conn.welcome = 'مرحبا بك في أقوى مجموعة لبوتات الواتساب الرجاء قراءة قوانين المجموعة حتى لا يتم طردك  ، سيلانا اول بوت واتساب في الوطن العربي \n\n welcome to the groupe please read the rules of the group\n\n\n @subject, @user\n'
-    conn.bye = '\n  مع السلامة  اتمنى ألا تعود الى هـــــــــنا \n@user 👋'
-    conn.spromote = '@user *يرقي* إلى المشرف '
-    conn.sdemote = '@user *خفض الرتبة* من المشرف'
-    conn.sDesc = 'تم تغيير الوصف إلى \n@desc'
-    conn.sSubject = 'تم تغيير اسم المجموعة إلى \n@subject'
-    conn.sIcon = 'تم تغيير الصورة الجماعية!'
-    conn.sRevoke = 'تم تغيير رابط المجموعة إلى \n@revoke'
-    conn.sAnnounceOn = 'تم إغلاق المجموعة!\الآن يمكن للمسؤولين فقط إرسال الرسائل.'
-    conn.sAnnounceOff = 'المجموعة مفتوحة!\nالآن يمكن لجميع المشاركين إرسال الرسائل.'
-    conn.sRestrictOn = 'تم تغيير تعديل معلومات المجموعة إلى المسؤول فقط!'
-    conn.sRestrictOff = 'تم تغيير تعديل معلومات المجموعة لجميع المشاركين!'
-
+    conn.welcome = 'WELCOME TO _EMK BOT_\n \nHI 👋 I\'M _KIM_, YOUR WHATSAPP ASSISTANT.\n'
+    conn.bye = '\n  Goodbye, I hope you do not come back here again \n@user 👋'
+conn.spromote = '@user *promoted* to admin'
+conn.sdemote = '@user *demoted* from admin'
+conn.sDesc = 'Description changed to \n@desc'
+conn.sSubject = 'Group name changed to \n@subject'
+conn.sIcon = 'Group photo changed!'
+conn.sRevoke = 'Group link changed to \n@revoke'
+conn.sAnnounceOn = 'Group closed!\nNow only admins can send messages.'
+conn.sAnnounceOff = 'Group opened!\nNow all participants can send messages.'
+conn.sRestrictOn = 'Group info edit changed to admins only!'
+conn.sRestrictOff = 'Group info edit changed for all participants!'
     conn.handler = handler.handler.bind(global.conn)
     conn.participantsUpdate = handler.participantsUpdate.bind(global.conn)
     conn.groupsUpdate = handler.groupsUpdate.bind(global.conn)
