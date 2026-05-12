@@ -15,7 +15,7 @@ global.setting = {
 
 global.info = {
  nomerbot : '212786946506',
- pairingNumber : '212786946506',
+ pairingNumber : '212773608927',
  figlet: 'EMK LITE', // create a start console display
  nomorwa : '212786946506',
  nameown : 'KIM SUN OO',
