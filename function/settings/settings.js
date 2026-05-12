@@ -14,10 +14,10 @@ global.setting = {
  }
 
 global.info = {
- nomerbot : '212786946506',
- pairingNumber : '212786946506',
+ nomerbot : '212773608927',
+ pairingNumber : '212773608927',
  figlet: 'EMK LITE', // create a start console display
- nomorwa : '212786946506',
+ nomorwa : '212773608927',
  nameown : 'KIM SUN OO',
  nomerown : '33759850405',
  packname : 'sticker by ',
