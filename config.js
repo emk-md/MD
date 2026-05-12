@@ -1,6 +1,5 @@
 import './function/settings/settings.js'
 import { watchFile, unwatchFile } from 'fs'
-import fs from 'fs'
 import chalk from 'chalk'
 import { fileURLToPath } from 'url'
 
@@ -81,10 +80,10 @@ global.multiplier = 69
 // =========================
 
 global.rpg = {
-  emoticon(string) {
+  emoticon(string = '') {
     string = string.toLowerCase()
 
-    let emot = {
+    const emot = {
       agility: '🤸‍♂️',
       arc: '🏹',
       armor: '🥼',
@@ -141,18 +140,19 @@ global.rpg = {
       superior: '💼',
       sword: '⚔️',
       tiger: '🐅',
-      trash: '🗑',
+      trash: '🗑️',
       uncommon: '🎁',
       upgrader: '🧰',
       wood: '🪵'
     }
 
-    let results = Object.keys(emot)
+    const results = Object.keys(emot)
       .map(v => [v, new RegExp(v, 'gi')])
       .filter(v => v[1].test(string))
 
     if (!results.length) return ''
-    else return emot[results[0][0]]
+
+    return emot[results[0][0]]
   }
 }
 
@@ -217,10 +217,16 @@ global.lol = api.lol
 // AUTO RELOAD
 // =========================
 
-let file = fileURLToPath(import.meta.url)
+const file = fileURLToPath(import.meta.url)
 
-watchFile(file, () => {
+watchFile(file, async () => {
   unwatchFile(file)
+
   console.log(chalk.redBright("Update 'config.js'"))
-  import(`${file}?update=${Date.now()}`)
+
+  try {
+    await import(`${file}?update=${Date.now()}`)
+  } catch (err) {
+    console.error(chalk.redBright(err))
+  }
 })
