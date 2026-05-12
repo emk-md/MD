@@ -21,7 +21,7 @@ global.info = {
   nomerown: '33759850405',
   packname: 'sticker by ',
   author: 'EMK AI',
-  namebot: 'EMK AI',
+  namebot: '乂 EMK AI',
   wm: 'EMK LITE.',
   stickpack: 'Whatsapp',
   stickauth: 'EMK LITE',
