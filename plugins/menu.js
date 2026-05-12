@@ -43,58 +43,59 @@ let handler = async (m, { conn, usedPrefix, command, args }) => {
       }
     });
            let isiMenu = []
-          let objekk = Object.keys(tagCount)
-          Object.entries(tagCount).map(([key, value]) => isiMenu.push({
-          header: ` list cmd ${key}  `,
-                    title: `📌 إظهار قائمة أوامر [ ${key} ]`,
-                    description: `عدد ${value} الميزات`,
-                    id: ".menu " + key,
-                    })
-          ).join();
-          const datas = {
-    title: "أنقر هنا !",
-    sections: [{
-            title: "جميع الأوامر الخاصة بالبوت",
-            highlight_label: "إظهار كافة الميزات",
-            rows: [{
-                    header: " All Menu",
-                    title: "جميع الأوامر الخاصة بالبوت",
-                    description: "",
-                    id: ".menu all",
-                }],
-        },
-        {
-            title: 'لائحة الأوامر ',
-            highlight_label: "الائحة",
-            rows: [...isiMenu]
-        },
-        {
-            title: 'معلومات عن البوت',
-            highlight_label: "معلومة",
-            rows: [
-            {
-                    header: "سكريبت البوت",
-                    title: "معلومات حول سكريبت البوت",
-                    description: "",
-                    id: ".sc",
-                },
-            {
-                    header: "Info Owner",
-                    title: "معلومات عن صاحب البوت",
-                    description: "",
-                    id: ".owner",
-                },
-            {
-                    header: "معلومات الميزة الإجمالية",
-                    title: "المعلومات المتعلقة بالميزات الإجمالية للبوت",
-                    description: "",
-                    id: ".totalfitur",
-                },
-            {
-                    header: "معلومات سرعة الاستجابة",
-                    title: "معلومات بخصوص سرعة استجابة الروبوت",
-                    description: "",
-                    id: ".os",
+let objekk = Object.keys(tagCount)
+Object.entries(tagCount).map(([key, value]) => isiMenu.push({
+  header: ` list cmd ${key} `,
+  title: `📌 Show command list [ ${key} ]`,
+  description: `${value} features`,
+  id: ".menu " + key,
+})
+).join();
+
+const datas = {
+  title: "Click Here!",
+  sections: [{
+      title: "All Bot Commands",
+      highlight_label: "Show All Features",
+      rows: [{
+          header: "All Menu",
+          title: "All Bot Commands",
+          description: "",
+          id: ".menu all",
+      }],
+    },
+    {
+      title: 'Command List',
+      highlight_label: "Menu",
+      rows: [...isiMenu]
+    },
+    {
+      title: 'Bot Information',
+      highlight_label: "Info",
+      rows: [
+      {
+          header: "Bot Script",
+          title: "Information About the Bot Script",
+          description: "",
+          id: ".sc",
+      },
+      {
+          header: "Info Owner",
+          title: "Information About the Bot Owner",
+          description: "",
+          id: ".owner",
+      },
+      {
+          header: "Total Feature Information",
+          title: "Information About the Bot's Total Features",
+          description: "",
+          id: ".totalfitur",
+      },
+      {
+          header: "Response Speed Information",
+          title: "Information About the Bot Response Speed",
+          description: "",
+          id: ".os",
                 }
                 ]
         }
@@ -123,7 +124,7 @@ let handler = async (m, { conn, usedPrefix, command, args }) => {
    let tUser = Object.keys(db.data.users).length;
    let userReg = Object.values(global.db.data.users).filter(user => user.registered == true).length
    
-let headers = `إعتبرني : رفيقتك ، أستاذتك ،عزيزتك ،التي ستجدها قربك في كل يوم لأجعل لك من نجمة ستة و من استخدام تطبيق الواتساب طعما آخر 🙂‍↕️🧠🗣️\n\n`
+let headers = `_EMK BOT_`
 
   if (cmd === 'list') {
     const daftarTag = Object.keys(tagCount)
@@ -141,7 +142,13 @@ let headers = `إعتبرني : رفيقتك ، أستاذتك ،عزيزتك ،
     }
     let mpt = clockString(_mpt)
     let name = m.pushName || conn.getName(m.sender)
-    let list = `${headers}${readMore}\n╭──「 LIST MENU 」\n│※ ${usedPrefix + command} all\n│※ ${daftarTag}\n╰──────────•`
+    let list = `${headers}${readMore}
+┏━━━━━━━━━━━━━━━┓
+┃   _LIST MENU_
+┣━━━━━━━━━━━━━━━┫
+┃ _${usedPrefix + command}_ all
+┃ _${daftarTag}_
+┗━━━━━━━━━━━━━━━┛`
  const pp = await conn.profilePictureUrl(m.sender, 'image').catch((_) => "https://telegra.ph/file/1ecdb5a0aee62ef17d7fc.jpg");
 if (_menu.image) {
 
@@ -150,7 +157,7 @@ conn.sendMessage(m.chat, {
       contextInfo: {
       externalAdReply: {
       title: namebot,
-      body: 'M E N U',
+      body: 'MENU',
       thumbnailUrl: thumbnail,
       souceUrl: sgc,
       mediaType: 1,
@@ -167,7 +174,7 @@ conn.sendMessage(m.chat, {
       contextInfo: {
       externalAdReply: {
       title: namebot,
-      body: 'M E N U',
+      body: 'MENU',
       thumbnailUrl: thumbnail,
       souceUrl: sgc,
       mediaType: 1,
@@ -203,7 +210,7 @@ conn.sendMessage(m.chat, {
           }, {quoted: m});
           } else if (_menu.button) {
           
- conn.sendListImageButton(m.chat, `${headers}`, datas, 'عَنْ أَبِي هُرَيْرَةَ رضي الله تعالى عنه: أَنَّ رَسُولَ اللَّهِ ﷺ قَالَ: إِذَا مَاتَ ابنُ آدم انْقَطَعَ عَنْهُ عَمَلُهُ إِلَّا مِنْ ثَلَاثٍ: صَدَقَةٍ جَارِيَةٍ، أو عِلْمٍ يُنْتَفَعُ بِهِ، أَوْ وَلَدٍ صَالِحٍ يَدْعُو لَهُ', thumbnail)
+ conn.sendListImageButton(m.chat, `${headers}`, datas, '', thumbnail)
           }
   } else if (tagCount[cmd]) {
     const daftarHelp = tagHelpMapping[cmd].map((helpItem, index) => {
@@ -215,7 +222,14 @@ conn.sendMessage(m.chat, {
         const more = String.fromCharCode(8206)
         const readMore = more.repeat(4001)
         
-    const list2 =  `${headers}${readMore}╭──「 MENU ${cmd.toUpperCase()} 」\n├──────────────\n│※ ${daftarHelp}\n╰──────────•\n\n*Total menu ${cmd}: ${tagHelpMapping[cmd].length}*`
+    const list2 = `${headers}${readMore}
+┏━━━━━━━━━━━━━━━┓
+┃   _MENU ${cmd.toUpperCase()}_
+┣━━━━━━━━━━━━━━━┫
+┃ _${daftarHelp}_
+┗━━━━━━━━━━━━━━━┛
+
+*Total menu ${cmd}: ${tagHelpMapping[cmd].length}*`
      const pp = await conn.profilePictureUrl(m.sender, 'image').catch((_) => "https://telegra.ph/file/1ecdb5a0aee62ef17d7fc.jpg");
 if (_menu.image) {
 
@@ -225,7 +239,7 @@ conn.sendMessage(m.chat, {
       contextInfo: {
       externalAdReply: {
       title: namebot,
-      body: 'M E N U',
+      body: 'NENU',
       thumbnailUrl: thumbnail,
       souceUrl: sgc,
       mediaType: 1,
@@ -241,7 +255,7 @@ conn.sendMessage(m.chat, {
       contextInfo: {
       externalAdReply: {
       title: namebot,
-      body: 'M E N U',
+      body: 'MENU',
       thumbnailUrl: thumbnail,
       souceUrl: sgc,
       mediaType: 1,
@@ -276,7 +290,7 @@ conn.sendMessage(m.chat, {
             },
           }, {quoted: m});
           } else if (_menu.button) {
-          conn.sendListImageButton(m.chat, `IM SILANA LITE AI\n\n${list2}`, datas, wm, thumbnail)
+          conn.sendListImageButton(m.chat, `IM KIM\n\n${list2}`, datas, wm, thumbnail)
           }
           } else if (cmd === 'all') {
     let name = m.pushName || conn.getName(m.sender)
@@ -287,9 +301,13 @@ conn.sendMessage(m.chat, {
         const premiumSign = help[index].premium ? '🅟' : '';
         const limitSign = help[index].limit ? 'Ⓛ' : '';
         return `.${helpItem} ${premiumSign}${limitSign}`;
-      }).join('\n│※' + ' ');
-      return`╭──「 MENU ${tag.toUpperCase()} 」\n├──────────────\n│※ ${daftarHelp}\n╰──────────•`;
-    }).join('\n');
+      }).join('\n┃ ' + ' ');
+      return `┏━━━━━━━━━━━━━━━┓
+┃   _MENU ${tag.toUpperCase()}_
+┣━━━━━━━━━━━━━━━┫
+┃ ${daftarHelp}
+┗━━━━━━━━━━━━━━━┛`;
+    }).join('\n');
     let all =  `${headers}${readMore}\n${allTagsAndHelp}\n${wm}`
     const pp = await conn.profilePictureUrl(m.sender, 'image').catch((_) => "https://telegra.ph/file/1ecdb5a0aee62ef17d7fc.jpg");
     if (_menu.image) {
@@ -299,7 +317,7 @@ conn.sendMessage(m.chat, {
       contextInfo: {
       externalAdReply: {
       title: namebot,
-      body: 'M E N U',
+      body: 'MENU',
       thumbnailUrl: thumbnail,
       souceUrl: sgc,
       mediaType: 1,
@@ -315,7 +333,7 @@ conn.sendMessage(m.chat, {
       contextInfo: {
       externalAdReply: {
       title: namebot,
-      body: 'M E N U',
+      body: 'MENU',
       thumbnailUrl: thumbnail,
       souceUrl: sgc,
       mediaType: 1,
@@ -350,7 +368,7 @@ conn.sendMessage(m.chat, {
             },
           }, {quoted: m});
           } else if (_menu.button) {
-          conn.sendListImageButton(m.chat, `IM SILANA LITE AI\n${all}`, datas, 'instagram.com/noureddine_ouafy', thumbnail)
+          conn.sendListImageButton(m.chat, `IM KIM\n${all}`, datas, 'https://wa.me/qr/FFA4RBEQZQG6O1', thumbnail)
           }
   } else {
   await conn.reply(m.chat, `"'${cmd}' could not be found. Use commands '${command} list' atau '${command} all' to see the available menu.`,m);
